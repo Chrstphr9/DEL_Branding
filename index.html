@@ -3,247 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>theDiplomats Digital | Company Branding</title>
+    <title>theDiplomats Digital | Professional Branding Services</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        /* CSS Reset & Base Styles */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: 'Poppins', sans-serif;
-            background: #f9f9f9;
-            color: #333;
-            line-height: 1.6;
-        }
-
-        /* Header & Navigation */
-        header {
-            background: #1a1a2e;
-            color: white;
-            padding: 1rem 5%;
-            position: fixed;
-            width: 100%;
-            z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-size: 1.8rem;
-            font-weight: 600;
-            color: white;
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        .logo:hover {
-            color: #4cc9f0;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-        }
-
-        .nav-links a {
-            color: white;
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s ease;
-        }
-
-        .nav-links a:hover {
-            color: #4cc9f0;
-        }
-
-        /* Hero Section */
-        .hero {
-            background: linear-gradient(135deg, #16213e, #0f3460);
-            color: white;
-            padding: 8rem 5% 4rem;
-            text-align: center;
-        }
-
-        .hero h1 {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            animation: fadeIn 1.5s ease;
-        }
-
-        .hero p {
-            font-size: 1.2rem;
-            max-width: 700px;
-            margin: 0 auto 2rem;
-            animation: fadeIn 2s ease;
-        }
-
-        /* Branding Packages Section */
-        .packages {
-            padding: 5rem 5%;
-            background: #fff;
-        }
-
-        .section-title {
-            text-align: center;
-            margin-bottom: 3rem;
-            font-size: 2.5rem;
-            color: #1a1a2e;
-        }
-
-        .packages-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .package-card {
-            background: white;
-            border-radius: 10px;
-            padding: 2rem;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .package-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
-        }
-
-        .package-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: #0f3460;
-        }
-
-        .package-card .price {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: #4cc9f0;
-            margin: 1rem 0;
-        }
-
-        .package-card ul {
-            list-style: none;
-            margin-bottom: 1.5rem;
-        }
-
-        .package-card ul li {
-            padding: 0.5rem 0;
-            border-bottom: 1px solid #eee;
-        }
-
-        .delivery {
-            font-weight: 600;
-            color: #1a1a2e;
-        }
-
-        /* Footer */
-        footer {
-            background: #1a1a2e;
-            color: white;
-            padding: 4rem 5% 2rem;
-        }
-
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-bottom: 2rem;
-        }
-
-        .footer-section h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1.5rem;
-            color: #4cc9f0;
-        }
-
-        .footer-section ul {
-            list-style: none;
-        }
-
-        .footer-section ul li {
-            margin-bottom: 0.8rem;
-        }
-
-        .footer-section ul li a {
-            color: #ddd;
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        .footer-section ul li a:hover {
-            color: #4cc9f0;
-        }
-
-        .contact-info p {
-            margin-bottom: 0.8rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .copyright {
-            text-align: center;
-            padding-top: 2rem;
-            border-top: 1px solid #333;
-        }
-
-        /* Animations */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* Responsive Adjustments */
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-            .hero h1 {
-                font-size: 2.2rem;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css">
+   
 </head>
 <body>
-    <!-- Header -->
-    <header>
+    <!-- Smart Navbar (scrolls up with page) -->
+    <header id="navbar">
         <nav class="navbar">
-            <a href="#" class="logo">theDiplomats<span style="color: #4cc9f0;">Digital</span></a>
-            <div class="nav-links">
-                <a href="#about">About Us</a>
-                <a href="#branding">Branding</a>
-                <a href="#courses">Courses</a>
-                <a href="#contact">Contact</a>
-            </div>
+            <a href="#home" class="logo">TheDiplomats Digital</a>
         </nav>
     </header>
 
     <!-- Hero Section -->
     <section class="hero" id="home">
-        <h1>Company Branding Packages</h1>
-        <p>Building the future with innovative solutions that enhance businesses globally.</p>
+        <h1>Company Branding</h1>
+        <!-- <p>Building the future with innovative solutions that enhance businesses globally.</p> -->
+        <a href="#branding" class="cta-button">View Packages</a>
     </section>
 
-    <!-- Branding Packages -->
+    <!-- Branding Packages Section -->
     <section class="packages" id="branding">
-        <h2 class="section-title">Our Branding Solutions</h2>
+        <h2 class="section-title">Company Branding Packages</h2>
         <div class="packages-grid">
             <!-- Single Branding -->
             <div class="package-card">
                 <h3>Single Company Branding</h3>
-                <div class="price">N3,000</div>
+                <div class="price">3,000</div>
                 <ul>
                     <li>Logo Design</li>
                 </ul>
@@ -253,7 +41,7 @@
             <!-- Double Branding -->
             <div class="package-card">
                 <h3>Double Company Branding</h3>
-                <div class="price">N5,000</div>
+                <div class="price">5,000</div>
                 <ul>
                     <li>Logo Design</li>
                     <li>Business Card</li>
@@ -264,7 +52,7 @@
             <!-- Average Branding -->
             <div class="package-card">
                 <h3>Average Company Branding</h3>
-                <div class="price">N10,000</div>
+                <div class="price">10,000</div>
                 <ul>
                     <li>Logo Design</li>
                     <li>Letterhead</li>
@@ -277,7 +65,7 @@
             <!-- Premium Branding -->
             <div class="package-card">
                 <h3>Premium Company Branding</h3>
-                <div class="price">N15,000</div>
+                <div class="price">15,000</div>
                 <ul>
                     <li>Logo Design</li>
                     <li>Letterhead</li>
@@ -293,7 +81,7 @@
             <!-- Advance Branding -->
             <div class="package-card">
                 <h3>Advance Company Branding</h3>
-                <div class="price">N40,000</div>
+                <div class="price">40,000</div>
                 <ul>
                     <li>Logo Design</li>
                     <li>Letterhead</li>
@@ -311,7 +99,7 @@
             <!-- Gold Branding -->
             <div class="package-card">
                 <h3>Gold Company Branding</h3>
-                <div class="price">N120,000</div>
+                <div class="price">120,000</div>
                 <ul>
                     <li>Logo Design</li>
                     <li>Letterhead</li>
@@ -333,7 +121,7 @@
             <!-- Full Branding -->
             <div class="package-card">
                 <h3>Full Company Branding</h3>
-                <div class="price">N150,000</div>
+                <div class="price">150,000</div>
                 <ul>
                     <li>Logo Design</li>
                     <li>Letterhead</li>
@@ -358,17 +146,46 @@
         </div>
     </section>
 
+    <!-- Courses Section -->
+    <section class="courses" id="courses">
+        <h2 class="section-title">Coding Courses</h2>
+        <div class="courses-grid">
+            <div class="course-item">
+                <h4>JavaScript</h4>
+            </div>
+            <div class="course-item">
+                <h4>UI/UX & Prototype Design</h4>
+            </div>
+            <div class="course-item">
+                <h4>Data Analysis</h4>
+            </div>
+            <div class="course-item">
+                <h4>Cyber Security</h4>
+            </div>
+            <div class="course-item">
+                <h4>App Development</h4>
+            </div>
+        </div>
+    </section>
+
     <!-- Footer -->
     <footer id="contact">
         <div class="footer-content">
             <div class="footer-section">
                 <h3>theDiplomats Digital</h3>
                 <p>Building the future with innovative solutions that enhance businesses globally.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </div>
             </div>
 
             <div class="footer-section">
                 <h3>Quick Links</h3>
                 <ul>
+                    <li><a href="#home">Home</a></li>
                     <li><a href="#about">About Us</a></li>
                     <li><a href="#registration">Registration</a></li>
                     <li><a href="#branding">Company Branding</a></li>
@@ -379,7 +196,7 @@
                 <h3>Coding Courses</h3>
                 <ul>
                     <li><a href="#javascript">JavaScript</a></li>
-                    <li><a href="#uiux">UI/UX & Prototype Design</a></li>
+                    <li><a href="#uiux">UI/UX Design</a></li>
                     <li><a href="#data">Data Analysis</a></li>
                     <li><a href="#cyber">Cyber Security</a></li>
                     <li><a href="#app">App Development</a></li>
@@ -395,8 +212,64 @@
         </div>
 
         <div class="copyright">
-            <p>© 2024 theDiplomatsDigital. All rights reserved.</p>
+            <p>© 2025 theDiplomatsDigital. All rights reserved.</p>
         </div>
     </footer>
+
+    <script>
+        // Navbar that only shows at top of page
+        const navbar = document.getElementById('navbar');
+        
+        window.addEventListener('scroll', function() {
+            const currentScroll = window.pageYOffset;
+            
+            if (currentScroll <= 10) { // When at or near top (10px buffer)
+                navbar.classList.remove('hide');
+                navbar.classList.add('show');
+            } else {
+                navbar.classList.remove('show');
+                navbar.classList.add('hide');
+            }
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Active link highlighting
+        window.addEventListener('scroll', function() {
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('.nav-links a');
+            
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (pageYOffset >= sectionTop - 100) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
 </body>
 </html>
