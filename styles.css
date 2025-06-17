@@ -120,7 +120,7 @@ html {
 }
 
 .hero h1 {
-    font-size: 3.5rem;
+    font-size: 5rem;
     margin-bottom: 1.5rem;
     animation: fadeInUp 1s ease;
 }
@@ -157,6 +157,7 @@ html {
 .packages {
     padding: 6rem 5%;
     background: #fff;
+    animation: fadeInUp 1.3s ease 0.2s forwards;
 }
 
 .section-title {
@@ -165,6 +166,7 @@ html {
     font-size: 2.5rem;
     color: #1a1a2e;
     position: relative;
+    animation: fadeInUp 1s ease 0.4s forwards;
 }
 
 .section-title::after {
