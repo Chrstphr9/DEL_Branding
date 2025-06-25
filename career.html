@@ -1,0 +1,919 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <title>Careers - The Diplomats Branding & Publishing</title>
+    <style>
+        :root {
+            --primary-color: #1a1a2e;
+            --secondary-color: #16213e;
+            --accent-color: #0f3460;
+            --highlight-color: #e94560;
+            --light-color: #f1f1f1;
+            --dark-color: #333;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--light-color);
+            color: var(--dark-color);
+            line-height: 1.6;
+        }
+        
+        .navbar {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 1rem 2rem;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+        
+        .navbar.hide {
+            transform: translateY(-100%);
+        }
+        
+        .navbar.show {
+            transform: translateY(0);
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: white;
+            text-decoration: none;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            margin: 0 0.5rem;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--highlight-color);
+        }
+        
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+        
+        .hamburger-icon, .close-icon {
+            font-size: 1.5rem;
+            display: none;
+        }
+        
+        .close-icon {
+            display: none;
+        }
+        
+        .dropdown {
+            position: relative;
+        }
+        
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: var(--secondary-color);
+            min-width: 200px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+            z-index: 1;
+            border-radius: 0 0 5px 5px;
+        }
+        
+        .dropdown-content a {
+            color: white;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+        
+        .dropdown-content a:hover {
+            background-color: var(--accent-color);
+        }
+        
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+        
+        main {
+            padding-top: 80px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .hero {
+            background-color: var(--accent-color);
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .intro-section, .process-section {
+            margin-bottom: 3rem;
+        }
+        
+        .intro-section p, .process-section p {
+            margin-bottom: 1.5rem;
+        }
+        
+        .process-steps {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .process-step {
+            flex: 1;
+            min-width: 250px;
+            background-color: white;
+            padding: 2rem;
+            border-radius: 5px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        .process-step h3 {
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+            border-bottom: 2px solid var(--highlight-color);
+            padding-bottom: 0.5rem;
+        }
+        
+        .form-section {
+            background-color: white;
+            padding: 3rem;
+            border-radius: 5px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            margin-top: 3rem;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+        
+        .form-group label.required:after {
+            content: " *";
+            color: var(--highlight-color);
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+        
+        .form-group select {
+            appearance: none;
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right 1rem center;
+            background-size: 1em;
+        }
+        
+        .checkbox-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 0.5rem;
+        }
+        
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+        }
+        
+        .checkbox-item input {
+            width: auto;
+            margin-right: 0.5rem;
+        }
+        
+        .submit-btn {
+            background-color: var(--highlight-color);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            font-size: 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            width: 100%;
+        }
+        
+        .submit-btn:hover {
+            background-color: #d13354;
+        }
+        
+        footer {
+    background: #1a1a2e;
+    color: white;
+    padding: 5rem 5% 2rem;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 3rem;
+    margin-bottom: 3rem;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.footer-section h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    color: #f84;
+    position: relative;
+    display: inline-block;
+}
+
+.footer-section h3::after {
+    content: '';
+    position: absolute;
+    width: 50%;
+    height: 2px;
+    background: #f84;
+    bottom: -5px;
+    left: 0;
+}
+
+.footer-section p {
+    margin-bottom: 1.5rem;
+    opacity: 0.9;
+}
+
+.footer-section ul {
+    list-style: none;
+}
+
+.footer-section ul li {
+    margin-bottom: 0.8rem;
+}
+
+.footer-section ul li a {
+    color: #ddd;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+.footer-section ul li a:hover {
+    color: #f84;
+    transform: translateX(5px);
+}
+
+.contact-info p {
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.8rem;
+    opacity: 0.9;
+}
+
+.contact-info i {
+    margin-top: 0.2rem;
+    color: #f84;
+}
+
+.social-links {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.social-links a {
+    color: white;
+    background: rgba(255, 255, 255, 0.1);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.social-links a:hover {
+    background: #f84;
+    transform: translateY(-3px);
+}
+
+.copyright {
+    text-align: center;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    opacity: 0.7;
+    font-size: 0.9rem;
+}
+        
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: flex;
+            }
+            
+            .hamburger-icon, .close-icon {
+                display: block;
+            }
+            
+            .close-icon {
+                display: none;
+            }
+            
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background-color: var(--secondary-color);
+                flex-direction: column;
+                align-items: center;
+                padding: 1rem 0;
+                transform: translateY(-150%);
+                transition: transform 0.3s ease;
+            }
+            
+            .nav-links.open {
+                transform: translateY(0);
+            }
+            
+            .hamburger-icon.open {
+                display: none;
+            }
+            
+            .close-icon.open {
+                display: block;
+            }
+            
+            .dropdown-content {
+                position: static;
+                display: none;
+                width: 100%;
+                box-shadow: none;
+            }
+            
+            .dropdown.active .dropdown-content {
+                display: block;
+            }
+            
+            .form-section {
+                padding: 2rem 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar show" id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">The Diplomats</a>
+            
+            <div class="menu-toggle" id="menuToggle">
+                <span class="hamburger-icon" id="hamburgerIcon">☰</span>
+                <span class="close-icon" id="closeIcon">×</span>
+            </div>
+            
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li class="dropdown">
+                    <a href="#" id="servicesLink">Services</a>
+                    <div class="dropdown-content" id="servicesDropdown">
+                        <a href="">Designing</a>
+                        <a href="">Branding</a>
+                        <a href="">Printing</a>
+                        <a href="">Publishing</a>
+                    </div>
+                </li>
+                <li><a href="Affiliate.html">Affiliate</a></li>
+                <li><a href="career.html" class="active">Career</a></li>
+                <li><a href="job.html">Register a Job</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <main>
+        <section class="hero">
+            <h1>Career</h1>
+            <!-- <p>Join a team where learning is encouraged, skills are developed, and passion is rewarded</p> -->
+        </section>
+        
+        <div class="container">
+            <section class="intro-section">
+                <h2>Welcome to The Diplomats Digital World</h2>
+                <p>If your desire is to work in an organization where learning is encouraged, skills are developed and passion is rewarded, the diplomats digital world is exactly what you are looking for.</p>
+                <p>Besides, we offer internship opportunities for students and graduates who will be registering for one or two courses. Our internship programmes will enable you to gather technical expertise and personal skills which will enable you to make an impact in your career and benefit from vital on-the-job experience.</p>
+            </section>
+            
+            <section class="process-section">
+                <h2>Our Application Process</h2>
+                <p>You will be invited to go through a 4-step recruitment process, as listed below:</p>
+                
+                <div class="process-steps">
+                    <div class="process-step">
+                        <h3>COMPUTER-BASED ASSESSMENT</h3>
+                        <p>If eligible, you will be invited to complete a computer-based assessment comprising of questions covering: Spatial Reasoning, Abstract Reasoning, Verbal Reasoning, Logical Reasoning and Data Interpretation.</p>
+                    </div>
+                    
+                    <div class="process-step">
+                        <h3>PRE-INTERVIEW DOCUMENTATION</h3>
+                        <p>Upon successful completion of the first assessment, you will be invited for an informal chat with a member of the Human Resources Team, where you'd be required to provide evidence of relevant qualifications/credentials for verification. You may also be required to write an essay details of which will be communicated during the discussion.</p>
+                    </div>
+                    
+                    <div class="process-step">
+                        <h3>FINAL INTERVIEW</h3>
+                        <p>This stage involves a one-on-one interview with a member of the Executive Management Team. In addition to competency-based questions, candidates are expected to demonstrate industry knowledge and the passion required to work with the diplomats digital world.</p>
+                    </div>
+                    
+                    <div class="process-step">
+                        <h3>ENTRY LEVEL TRAINING SCHEME</h3>
+                        <p>Candidates who are successful at the Final Interview will be offered a place in our six-month Entry Level Programme (ELP). Here participants are trained and tested on practical, social, and technical aspects of the company. Successful candidates will be absorbed into the company subsequently.</p>
+                    </div>
+                </div>
+            </section>
+            
+            <section class="form-section">
+                <h2 style="text-align: center; margin-bottom: 2rem;">Recruitment Form</h2>
+                
+                <form id="careerForm">
+                    <div class="form-group">
+                        <label for="firstName" class="required">First Name:</label>
+                        <input type="text" id="firstName" name="firstName" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="lastName" class="required">Last Name:</label>
+                        <input type="text" id="lastName" name="lastName" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="address" class="required">Address:</label>
+                        <input type="text" id="address" name="address" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="whatsapp" class="required">WhatsApp Number:</label>
+                        <input type="tel" id="whatsapp" name="whatsapp" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="sex" class="required">Sex:</label>
+                        <select id="sex" name="sex" required>
+                            <option value="">Select Sex</option>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                            <option value="Other">Other</option>
+                            <option value="Prefer not to say">Prefer not to say</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="age" class="required">Age:</label>
+                        <select id="age" name="age" required>
+                            <option value="">Select Age Range</option>
+                            <option value="20-25">20 - 25</option>
+                            <option value="26-30">26 - 30</option>
+                            <option value="31-35">31 - 35</option>
+                            <option value="36-40">36 - 40</option>
+                            <option value="41-45">41 - 45</option>
+                            <option value="46-50">46 - 50</option>
+                            <option value="51+">51 and above</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="maritalStatus" class="required">Marital status:</label>
+                        <select id="maritalStatus" name="maritalStatus" required>
+                            <option value="">Select Marital Status</option>
+                            <option value="Single">Single</option>
+                            <option value="Married">Married</option>
+                            <option value="Divorced">Divorced</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="education" class="required">Highest Education:</label>
+                        <select id="education" name="education" required>
+                            <option value="">Select Highest Education</option>
+                            <option value="SSCE">SSCE</option>
+                            <option value="OND">OND</option>
+                            <option value="HND">HND</option>
+                            <option value="B.Sc">B.Sc</option>
+                            <option value="M.Sc">M.Sc</option>
+                            <option value="PHD">PHD</option>
+                            <option value="Others">Others</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="school" class="required">School:</label>
+                        <input type="text" id="school" name="school" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="graduationClass" class="required">Class of Graduation:</label>
+                        <select id="graduationClass" name="graduationClass" required>
+                            <option value="">Select Class</option>
+                            <option value="First Class">First Class</option>
+                            <option value="Second Class Upper">Second Class Upper</option>
+                            <option value="Second Class Lower">Second Class Lower</option>
+                            <option value="Third Class">Third Class</option>
+                            <option value="Distinction">Distinction</option>
+                            <option value="Upper Credit">Upper Credit</option>
+                            <option value="Lower Credit">Lower Credit</option>
+                            <option value="Pass">Pass</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="jobRole" class="required">Select Job role as applicable:</label>
+                        <select id="jobRole" name="jobRole" required>
+                            <option value="">Select Job Role</option>
+                            <option value="Intern">Intern</option>
+                            <option value="Graduate Trainee">Graduate Trainee</option>
+                            <option value="Social Media Manager">Social Media Manager</option>
+                            <option value="Graphics Designer">Graphics Designer</option>
+                            <option value="Graphics Instructor">Graphics Instructor</option>
+                            <option value="Research Officer">Research Officer</option>
+                            <option value="Marketer">Marketer</option>
+                            <option value="Human Resource Officer">Human Resource Officer</option>
+                            <option value="Operations Manager">Operations Manager</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="previousExperience" class="required">Have you worked in a branding and publishing company before?</label>
+                        <select id="previousExperience" name="previousExperience" required>
+                            <option value="">Select Option</option>
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group" id="experienceYearsGroup" style="display: none;">
+                        <label for="experienceYears">If yes, select years of experience:</label>
+                        <select id="experienceYears" name="experienceYears">
+                            <option value="">Select Years</option>
+                            <option value="1-6 months">1 month to 6 months</option>
+                            <option value="6-12 months">6 months to 1 year</option>
+                            <option value="1-2 years">1 year to 2 years</option>
+                            <option value="3-5 years">3 years to 5 years</option>
+                            <option value="5-10 years">5 years to 10 years</option>
+                            <option value="10+ years">10 years and above</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="rolesResponsibilities">State your roles and responsibilities:</label>
+                        <textarea id="rolesResponsibilities" name="rolesResponsibilities" rows="4"></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="otherFieldExperience" class="required">Have you worked in other field outside the branding and publishing firm?</label>
+                        <select id="otherFieldExperience" name="otherFieldExperience" required>
+                            <option value="">Select Option</option>
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group" id="otherExperienceGroup" style="display: none;">
+                        <label for="otherExperienceYears">If yes, specify years of experience:</label>
+                        <input type="text" id="otherExperienceYears" name="otherExperienceYears">
+                        
+                        <label for="otherRoles" style="margin-top: 1rem;">Specify Role(s) employed for:</label>
+                        <input type="text" id="otherRoles" name="otherRoles">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Computer skills: (Tick as applicable)</label>
+                        <div class="checkbox-group">
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="word" name="computerSkills" value="Microsoft Word">
+                                <label for="word">Microsoft Word</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="excel" name="computerSkills" value="Excel">
+                                <label for="excel">Excel</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="access" name="computerSkills" value="Access">
+                                <label for="access">Access</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="powerpoint" name="computerSkills" value="PowerPoint">
+                                <label for="powerpoint">PowerPoint</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="graphics" name="computerSkills" value="Graphics">
+                                <label for="graphics">Graphics</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="photoshop" name="computerSkills" value="Photoshop">
+                                <label for="photoshop">Photoshop</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Select skills as applicable:</label>
+                        <div class="checkbox-group">
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="leadership" name="skills" value="Leadership and Management">
+                                <label for="leadership">Leadership and Management</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="customerService" name="skills" value="Customer Service">
+                                <label for="customerService">Customer Service</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="communication" name="skills" value="Communication">
+                                <label for="communication">Communication</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="sales" name="skills" value="Sales and Marketing">
+                                <label for="sales">Sales and Marketing</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="timeManagement" name="skills" value="Time Management">
+                                <label for="timeManagement">Time Management</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="salaryExpectation" class="required">State your Salary expectation:</label>
+                        <input type="text" id="salaryExpectation" name="salaryExpectation" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="leaveReason">Why did you leave your current or last job?</label>
+                        <textarea id="leaveReason" name="leaveReason" rows="4"></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="fiveYearPlan">Where do you see yourself in the next five years?</label>
+                        <textarea id="fiveYearPlan" name="fiveYearPlan" rows="4"></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="whyDiplomats">Why do you want to work with the Diplomats Branding & Publishing Firm?</label>
+                        <textarea id="whyDiplomats" name="whyDiplomats" rows="4"></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="cvUpload" class="required">Upload CV:</label>
+                        <input type="file" id="cvUpload" name="cvUpload" accept=".pdf,.doc,.docx" required>
+                    </div>
+                    
+                    <button type="submit" class="submit-btn">Submit Application</button>
+                </form>
+            </section>
+        </div>
+    </main>
+    
+    <footer id="contact">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>theDiplomats Digital</h3>
+                <p>Building the future with innovative solutions that enhance businesses globally.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#registration">Registration</a></li>
+                    <li><a href="#branding">Company Branding</a></li>
+                </ul>
+            </div>
+
+            <!-- <div class="footer-section">
+                <h3>Coding Courses</h3>
+                <ul>
+                    <li><a href="#javascript">JavaScript</a></li>
+                    <li><a href="#uiux">UI/UX Design</a></li>
+                    <li><a href="#data">Data Analysis</a></li>
+                    <li><a href="#cyber">Cyber Security</a></li>
+                    <li><a href="#app">App Development</a></li>
+                </ul>
+            </div> -->
+
+            <div class="footer-section contact-info">
+                <h3>Get in Touch</h3>
+                <p><i class="fas fa-map-marker-alt"></i> 3rd Gate Army Barrack, by Ebube Block Industry, Azhata, Abuja FCT</p>
+                <p><i class="fas fa-phone"></i> +23470 8184 3000</p>
+                <p><i class="fas fa-envelope"></i> talktothediplomats@gmail.com</p>
+            </div>
+        </div>
+
+        <div class="copyright">
+            <p>© 2025 theDiplomatsDigital. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Navbar that only shows at top of page
+            const navbar = document.getElementById('navbar');
+            
+            if (navbar) {
+                window.addEventListener('scroll', function() {
+                    const currentScroll = window.pageYOffset;
+                    
+                    if (currentScroll <= 10) {
+                        navbar.classList.remove('hide');
+                        navbar.classList.add('show');
+                    } else {
+                        navbar.classList.remove('show');
+                        navbar.classList.add('hide');
+                    }
+                });
+            }
+
+            // Mobile menu toggle
+            const menuToggle = document.getElementById('menuToggle');
+            const navLinks = document.getElementById('navLinks');
+            const hamburgerIcon = document.getElementById('hamburgerIcon');
+            const closeIcon = document.getElementById('closeIcon');
+            const servicesLink = document.getElementById('servicesLink');
+            const servicesDropdown = document.getElementById('servicesDropdown');
+
+            if (menuToggle && navLinks && hamburgerIcon && closeIcon) {
+                menuToggle.addEventListener('click', () => {
+                    navLinks.classList.toggle('open');
+                    hamburgerIcon.classList.toggle('open');
+                    closeIcon.classList.toggle('open');
+                    document.body.style.overflow = navLinks.classList.contains('open') ? 'hidden' : '';
+                });
+
+                // Close menu when clicking regular links
+                document.querySelectorAll('.nav-links a:not(#servicesLink)').forEach(link => {
+                    link.addEventListener('click', () => {
+                        if (window.innerWidth <= 768) {
+                            navLinks.classList.remove('open');
+                            hamburgerIcon.classList.remove('open');
+                            closeIcon.classList.remove('open');
+                            document.body.style.overflow = '';
+                        }
+                    });
+                });
+
+                // Services dropdown functionality
+                if (servicesLink && servicesDropdown) {
+                    // Desktop hover behavior
+                    servicesLink.addEventListener('mouseenter', () => {
+                        if (window.innerWidth > 768) {
+                            servicesDropdown.style.display = 'block';
+                        }
+                    });
+                    
+                    // Mobile click behavior - toggle both dropdown and main menu
+                    servicesLink.addEventListener('click', (e) => {
+                        if (window.innerWidth <= 768) {
+                            e.preventDefault();
+                            const wasActive = servicesLink.parentElement.classList.contains('active');
+                            
+                            // Close all other dropdowns first
+                            document.querySelectorAll('.dropdown').forEach(dropdown => {
+                                dropdown.classList.remove('active');
+                            });
+                            
+                            // Toggle this dropdown
+                            servicesLink.parentElement.classList.toggle('active');
+                            
+                            // If this was closing the dropdown, also close the main menu
+                            if (wasActive) {
+                                navLinks.classList.remove('open');
+                                hamburgerIcon.classList.remove('open');
+                                closeIcon.classList.remove('open');
+                                document.body.style.overflow = '';
+                            }
+                        }
+                    });
+                }
+
+                // Close when clicking outside
+                document.addEventListener('click', (e) => {
+                    // Close mobile menu
+                    if (!e.target.closest('.navbar') && navLinks.classList.contains('open')) {
+                        navLinks.classList.remove('open');
+                        hamburgerIcon.classList.remove('open');
+                        closeIcon.classList.remove('open');
+                        document.body.style.overflow = '';
+                        
+                        // Also close any open dropdowns
+                        if (servicesLink) {
+                            servicesLink.parentElement.classList.remove('active');
+                        }
+                    }
+                    
+                    // Close desktop dropdown
+                    if (window.innerWidth > 768 && 
+                        !e.target.closest('.dropdown') && 
+                        servicesDropdown && 
+                        servicesDropdown.style.display === 'block') {
+                        servicesDropdown.style.display = 'none';
+                    }
+                });
+            }
+
+            // Show/hide experience years field based on previous experience answer
+            const previousExperience = document.getElementById('previousExperience');
+            const experienceYearsGroup = document.getElementById('experienceYearsGroup');
+            
+            if (previousExperience && experienceYearsGroup) {
+                previousExperience.addEventListener('change', function() {
+                    experienceYearsGroup.style.display = this.value === 'Yes' ? 'block' : 'none';
+                });
+            }
+
+            // Show/hide other experience fields based on answer
+            const otherFieldExperience = document.getElementById('otherFieldExperience');
+            const otherExperienceGroup = document.getElementById('otherExperienceGroup');
+            
+            if (otherFieldExperience && otherExperienceGroup) {
+                otherFieldExperience.addEventListener('change', function() {
+                    otherExperienceGroup.style.display = this.value === 'Yes' ? 'block' : 'none';
+                });
+            }
+
+            // Form submission
+            const careerForm = document.getElementById('careerForm');
+            if (careerForm) {
+                careerForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    // Here you would typically send the form data to your server
+                    alert('Thank you for your application! We will review your information and contact you if you are selected for the next stage.');
+                    this.reset();
+                    
+                    // Hide conditional fields after reset
+                    if (experienceYearsGroup) experienceYearsGroup.style.display = 'none';
+                    if (otherExperienceGroup) otherExperienceGroup.style.display = 'none';
+                });
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - The Diplomats Branding & Publishing</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #1a1a2e;
+            --secondary-color: #16213e;
+            --accent-color: #0f3460;
+            --highlight-color: #e94560;
+            --light-color: #f1f1f1;
+            --dark-color: #333;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--light-color);
+            color: var(--dark-color);
+            line-height: 1.6;
+        }
+        
+        .navbar {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 1rem 2rem;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+        
+        .navbar.hide {
+            transform: translateY(-100%);
+        }
+        
+        .navbar.show {
+            transform: translateY(0);
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: white;
+            text-decoration: none;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            margin: 0 0.5rem;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--highlight-color);
+        }
+        
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+        
+        .hamburger-icon, .close-icon {
+            font-size: 1.5rem;
+            display: none;
+        }
+        
+        .close-icon {
+            display: none;
+        }
+        
+        .dropdown {
+            position: relative;
+        }
+        
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: var(--secondary-color);
+            min-width: 200px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+            z-index: 1;
+            border-radius: 0 0 5px 5px;
+        }
+        
+        .dropdown-content a {
+            color: white;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+        
+        .dropdown-content a:hover {
+            background-color: var(--accent-color);
+        }
+        
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+        
+        main {
+            padding-top: 80px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .hero {
+            background-color: var(--accent-color);
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .contact-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .contact-info {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .contact-info h2 {
+            color: var(--accent-color);
+            margin-bottom: 1.5rem;
+        }
+        
+        .contact-details {
+            margin-top: 2rem;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 1.5rem;
+        }
+        
+        .contact-icon {
+            margin-right: 1rem;
+            color: var(--highlight-color);
+            font-size: 1.5rem;
+        }
+        
+        .contact-text h3 {
+            margin-bottom: 0.5rem;
+        }
+        
+        .contact-form {
+            flex: 1;
+            min-width: 300px;
+            background-color: white;
+            padding: 2rem;
+            border-radius: 5px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+        
+        .form-group label.required:after {
+            content: " *";
+            color: var(--highlight-color);
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+        
+        .form-group textarea {
+            min-height: 150px;
+        }
+        
+        .submit-btn {
+            background-color: var(--highlight-color);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            font-size: 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            width: 100%;
+        }
+        
+        .submit-btn:hover {
+            background-color: #d13354;
+        }
+        
+        .map-container {
+            margin-top: 3rem;
+            height: 400px;
+            background-color: #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #777;
+            font-size: 1.2rem;
+        }
+        
+        footer {
+            background-color: var(--primary-color);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+        
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: flex;
+            }
+            
+            .hamburger-icon, .close-icon {
+                display: block;
+            }
+            
+            .close-icon {
+                display: none;
+            }
+            
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background-color: var(--secondary-color);
+                flex-direction: column;
+                align-items: center;
+                padding: 1rem 0;
+                transform: translateY(-150%);
+                transition: transform 0.3s ease;
+            }
+            
+            .nav-links.open {
+                transform: translateY(0);
+            }
+            
+            .hamburger-icon.open {
+                display: none;
+            }
+            
+            .close-icon.open {
+                display: block;
+            }
+            
+            .dropdown-content {
+                position: static;
+                display: none;
+                width: 100%;
+                box-shadow: none;
+            }
+            
+            .dropdown.active .dropdown-content {
+                display: block;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar show" id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">The Diplomats</a>
+            
+            <div class="menu-toggle" id="menuToggle">
+                <span class="hamburger-icon" id="hamburgerIcon">☰</span>
+                <span class="close-icon" id="closeIcon">×</span>
+            </div>
+            
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li class="dropdown">
+                    <a href="#" id="servicesLink">Services</a>
+                    <div class="dropdown-content" id="servicesDropdown">
+                        <a href="">Designing</a>
+                        <a href="">Branding</a>
+                        <a href="">Printing</a>
+                        <a href="">Publishing</a>
+                    </div>
+                </li>
+                <li><a href="Affiliate.html">Affiliate</a></li>
+                <li><a href="career.html">Career</a></li>
+                <li><a href="job.html">Register a Job</a></li>
+                <li><a href="contact.html" class="active">Contact Us</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <main>
+        <section class="hero">
+            <h1>Get In Touch</h1>
+            <p>We'd love to hear from you! Reach out with any questions or inquiries.</p>
+        </section>
+        
+        <div class="container">
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h2>Contact Information</h2>
+                    <p>Have questions about our services or want to discuss a potential project? Fill out the form or contact us directly using the information below.</p>
+                    
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h3>Our Office</h3>
+                                <p>123 Business Avenue<br>City, State 10001<br>Country</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-phone-alt"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h3>Phone</h3>
+                                <p>+1 (123) 456-7890<br>+1 (987) 654-3210</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h3>Email</h3>
+                                <p>info@thediplomats.com<br>support@thediplomats.com</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h3>Working Hours</h3>
+                                <p>Monday - Friday: 9am - 6pm<br>Saturday: 10am - 4pm<br>Sunday: Closed</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="contact-form">
+                    <h2>Send Us a Message</h2>
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="name" class="required">Full Name:</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email" class="required">Email Address:</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="phone">Phone Number:</label>
+                            <input type="tel" id="phone" name="phone">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="subject">Subject:</label>
+                            <input type="text" id="subject" name="subject">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message" class="required">Your Message:</label>
+                            <textarea id="message" name="message" required></textarea>
+                        </div>
+                        
+                        <button type="submit" class="submit-btn">Send Message</button>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="map-container">
+                [GOOGLE MAP EMBED HERE]
+            </div>
+        </div>
+    </main>
+    
+    <footer id="contact">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>theDiplomats Digital</h3>
+                <p>Building the future with innovative solutions that enhance businesses globally.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#registration">Registration</a></li>
+                    <li><a href="#branding">Company Branding</a></li>
+                </ul>
+            </div>
+
+            <!-- <div class="footer-section">
+                <h3>Coding Courses</h3>
+                <ul>
+                    <li><a href="#javascript">JavaScript</a></li>
+                    <li><a href="#uiux">UI/UX Design</a></li>
+                    <li><a href="#data">Data Analysis</a></li>
+                    <li><a href="#cyber">Cyber Security</a></li>
+                    <li><a href="#app">App Development</a></li>
+                </ul>
+            </div> -->
+
+            <div class="footer-section contact-info">
+                <h3>Get in Touch</h3>
+                <p><i class="fas fa-map-marker-alt"></i> 3rd Gate Army Barrack, by Ebube Block Industry, Azhata, Abuja FCT</p>
+                <p><i class="fas fa-phone"></i> +23470 8184 3000</p>
+                <p><i class="fas fa-envelope"></i> talktothediplomats@gmail.com</p>
+            </div>
+        </div>
+
+        <div class="copyright">
+            <p>© 2025 theDiplomatsDigital. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Navbar that only shows at top of page
+            const navbar = document.getElementById('navbar');
+            
+            if (navbar) {
+                window.addEventListener('scroll', function() {
+                    const currentScroll = window.pageYOffset;
+                    
+                    if (currentScroll <= 10) {
+                        navbar.classList.remove('hide');
+                        navbar.classList.add('show');
+                    } else {
+                        navbar.classList.remove('show');
+                        navbar.classList.add('hide');
+                    }
+                });
+            }
+
+            // Mobile menu toggle
+            const menuToggle = document.getElementById('menuToggle');
+            const navLinks = document.getElementById('navLinks');
+            const hamburgerIcon = document.getElementById('hamburgerIcon');
+            const closeIcon = document.getElementById('closeIcon');
+            const servicesLink = document.getElementById('servicesLink');
+            const servicesDropdown = document.getElementById('servicesDropdown');
+
+            if (menuToggle && navLinks && hamburgerIcon && closeIcon) {
+                menuToggle.addEventListener('click', () => {
+                    navLinks.classList.toggle('open');
+                    hamburgerIcon.classList.toggle('open');
+                    closeIcon.classList.toggle('open');
+                    document.body.style.overflow = navLinks.classList.contains('open') ? 'hidden' : '';
+                });
+
+                // Close menu when clicking regular links
+                document.querySelectorAll('.nav-links a:not(#servicesLink)').forEach(link => {
+                    link.addEventListener('click', () => {
+                        if (window.innerWidth <= 768) {
+                            navLinks.classList.remove('open');
+                            hamburgerIcon.classList.remove('open');
+                            closeIcon.classList.remove('open');
+                            document.body.style.overflow = '';
+                        }
+                    });
+                });
+
+                // Services dropdown functionality
+                if (servicesLink && servicesDropdown) {
+                    // Desktop hover behavior
+                    servicesLink.addEventListener('mouseenter', () => {
+                        if (window.innerWidth > 768) {
+                            servicesDropdown.style.display = 'block';
+                        }
+                    });
+                    
+                    // Mobile click behavior - toggle both dropdown and main menu
+                    servicesLink.addEventListener('click', (e) => {
+                        if (window.innerWidth <= 768) {
+                            e.preventDefault();
+                            const wasActive = servicesLink.parentElement.classList.contains('active');
+                            
+                            // Close all other dropdowns first
+                            document.querySelectorAll('.dropdown').forEach(dropdown => {
+                                dropdown.classList.remove('active');
+                            });
+                            
+                            // Toggle this dropdown
+                            servicesLink.parentElement.classList.toggle('active');
+                            
+                            // If this was closing the dropdown, also close the main menu
+                            if (wasActive) {
+                                navLinks.classList.remove('open');
+                                hamburgerIcon.classList.remove('open');
+                                closeIcon.classList.remove('open');
+                                document.body.style.overflow = '';
+                            }
+                        }
+                    });
+                }
+
+                // Close when clicking outside
+                document.addEventListener('click', (e) => {
+                    // Close mobile menu
+                    if (!e.target.closest('.navbar') && navLinks.classList.contains('open')) {
+                        navLinks.classList.remove('open');
+                        hamburgerIcon.classList.remove('open');
+                        closeIcon.classList.remove('open');
+                        document.body.style.overflow = '';
+                        
+                        // Also close any open dropdowns
+                        if (servicesLink) {
+                            servicesLink.parentElement.classList.remove('active');
+                        }
+                    }
+                    
+                    // Close desktop dropdown
+                    if (window.innerWidth > 768 && 
+                        !e.target.closest('.dropdown') && 
+                        servicesDropdown && 
+                        servicesDropdown.style.display === 'block') {
+                        servicesDropdown.style.display = 'none';
+                    }
+                });
+            }
+
+            // Form submission
+            const contactForm = document.getElementById('contactForm');
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    // Here you would typically send the form data to your server
+                    alert('Thank you for your message! We will get back to you soon.');
+                    this.reset();
+                });
+            }
+        });
+    </script>
+</body>
+</html>

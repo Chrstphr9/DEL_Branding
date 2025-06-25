@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <title>About Us - The Diplomats Branding & Publishing</title>
+    <style>
+        :root {
+            --primary-color: #1a1a2e;
+            --secondary-color: #16213e;
+            --accent-color: #0f3460;
+            --highlight-color: #e94560;
+            --light-color: #f1f1f1;
+            --dark-color: #333;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--light-color);
+            color: var(--dark-color);
+            line-height: 1.6;
+        }
+        
+        .navbar {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 1rem 2rem;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+        
+        .navbar.hide {
+            transform: translateY(-100%);
+        }
+        
+        .navbar.show {
+            transform: translateY(0);
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: white;
+            text-decoration: none;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            margin: 0 0.5rem;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--highlight-color);
+        }
+        
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+        
+        .hamburger-icon, .close-icon {
+            font-size: 1.5rem;
+            display: none;
+        }
+        
+        .close-icon {
+            display: none;
+        }
+        
+        .dropdown {
+            position: relative;
+        }
+        
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: var(--secondary-color);
+            min-width: 200px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+            z-index: 1;
+            border-radius: 0 0 5px 5px;
+        }
+        
+        .dropdown-content a {
+            color: white;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+        
+        .dropdown-content a:hover {
+            background-color: var(--accent-color);
+        }
+        
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+        
+        main {
+            padding-top: 80px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .hero {
+            background-color: var(--accent-color);
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .about-section {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .about-text {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .about-image {
+            flex: 1;
+            min-width: 300px;
+            background-color: #ddd;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #777;
+            font-size: 1.2rem;
+        }
+        
+        .mission-vision {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .card {
+            flex: 1;
+            min-width: 300px;
+            background-color: white;
+            padding: 2rem;
+            border-radius: 5px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        .card h2 {
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+            border-bottom: 2px solid var(--highlight-color);
+            padding-bottom: 0.5rem;
+        }
+        
+        .values-section {
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 3rem 2rem;
+            border-radius: 5px;
+        }
+        
+        .values-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+        
+        .value-item {
+            background-color: var(--primary-color);
+            padding: 1.5rem;
+            border-radius: 5px;
+            min-width: 200px;
+            text-align: center;
+            flex: 1;
+        }
+        
+        footer {
+    background: #1a1a2e;
+    color: white;
+    padding: 5rem 5% 2rem;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 3rem;
+    margin-bottom: 3rem;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.footer-section h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    color: #f84;
+    position: relative;
+    display: inline-block;
+}
+
+.footer-section h3::after {
+    content: '';
+    position: absolute;
+    width: 50%;
+    height: 2px;
+    background: #f84;
+    bottom: -5px;
+    left: 0;
+}
+
+.footer-section p {
+    margin-bottom: 1.5rem;
+    opacity: 0.9;
+}
+
+.footer-section ul {
+    list-style: none;
+}
+
+.footer-section ul li {
+    margin-bottom: 0.8rem;
+}
+
+.footer-section ul li a {
+    color: #ddd;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+.footer-section ul li a:hover {
+    color: #f84;
+    transform: translateX(5px);
+}
+
+.contact-info p {
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.8rem;
+    opacity: 0.9;
+}
+
+.contact-info i {
+    margin-top: 0.2rem;
+    color: #f84;
+}
+
+.social-links {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.social-links a {
+    color: white;
+    background: rgba(255, 255, 255, 0.1);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.social-links a:hover {
+    background: #f84;
+    transform: translateY(-3px);
+}
+
+.copyright {
+    text-align: center;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    opacity: 0.7;
+    font-size: 0.9rem;
+}
+        
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: flex;
+            }
+            
+            .hamburger-icon, .close-icon {
+                display: block;
+            }
+            
+            .close-icon {
+                display: none;
+            }
+            
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background-color: var(--secondary-color);
+                flex-direction: column;
+                align-items: center;
+                padding: 1rem 0;
+                transform: translateY(-150%);
+                transition: transform 0.3s ease;
+            }
+            
+            .nav-links.open {
+                transform: translateY(0);
+            }
+            
+            .hamburger-icon.open {
+                display: none;
+            }
+            
+            .close-icon.open {
+                display: block;
+            }
+            
+            .dropdown-content {
+                position: static;
+                display: none;
+                width: 100%;
+                box-shadow: none;
+            }
+            
+            .dropdown.active .dropdown-content {
+                display: block;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar show" id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">The Diplomats</a>
+            
+            <div class="menu-toggle" id="menuToggle">
+                <span class="hamburger-icon" id="hamburgerIcon">☰</span>
+                <span class="close-icon" id="closeIcon">×</span>
+            </div>
+            
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html" class="active">About Us</a></li>
+                <li class="dropdown">
+                    <a href="#" id="servicesLink">Services</a>
+                    <div class="dropdown-content" id="servicesDropdown">
+                        <a href="">Designing</a>
+                        <a href="">Branding</a>
+                        <a href="">Printing</a>
+                        <a href="">Publishing</a>
+                    </div>
+                </li>
+                <li><a href="Affiliate.html">Affiliate</a></li>
+                <li><a href="career.html">Career</a></li>
+                <li><a href="job.html">Register a Job</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <main>
+        <section class="hero">
+            <h1>About The Diplomats</h1>
+            <!-- <p>Your trusted partner in branding and publishing solutions</p> -->
+        </section>
+        
+        <div class="container">
+            <section class="about-section">
+                <div class="about-text">
+                    <h2>Who We Are</h2>
+                    <p>The Diplomats Branding & Publishing is made up of specialized and seasoned experts. If you're looking for a professional, caring and reliable branding and publishing firm that is cost effective and that will give you excellent services you can be proud of, then The Diplomats Branding and Publishing is your answer.</p>
+                </div>
+                <div class="about-image">
+                    [TEAM PHOTO]
+                </div>
+            </section>
+            
+            <section class="mission-vision">
+                <div class="card">
+                    <h2>Our Mission</h2>
+                    <p>Exceptional Customer Service</p>
+                    <div class="about-image" style="height: 200px; margin-top: 1rem;">
+                        [MISSION IMAGE]
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <h2>Our Vision</h2>
+                    <p>Exceeding Customers' Expectations</p>
+                    <div class="about-image" style="height: 200px; margin-top: 1rem;">
+                        [VISION IMAGE]
+                    </div>
+                </div>
+            </section>
+            
+            <section class="values-section">
+                <h2 style="text-align: center;">Our Core Values</h2>
+                <div class="values-list">
+                    <div class="value-item">
+                        <h3>Integrity</h3>
+                        <!-- <p>We conduct our business with honesty and transparency</p> -->
+                    </div>
+                    <div class="value-item">
+                        <h3>Excellence</h3>
+                        <!-- <p>We pursue the highest standards in all we do</p> -->
+                    </div>
+                    <div class="value-item">
+                        <h3>Innovation</h3>
+                        <!-- <p>We embrace creativity and forward-thinking solutions</p> -->
+                    </div>
+                    <div class="value-item">
+                        <h3>Professionalism</h3>
+                        <!-- <p>We maintain the utmost respect and competence</p> -->
+                    </div>
+                    <div class="value-item">
+                        <h3>Business Ethics</h3>
+                        <!-- <p>We adhere to strong moral principles in all dealings</p> -->
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+    
+    <footer id="contact">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>theDiplomats Digital</h3>
+                <p>Building the future with innovative solutions that enhance businesses globally.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#registration">Registration</a></li>
+                    <li><a href="#branding">Company Branding</a></li>
+                </ul>
+            </div>
+
+            <!-- <div class="footer-section">
+                <h3>Coding Courses</h3>
+                <ul>
+                    <li><a href="#javascript">JavaScript</a></li>
+                    <li><a href="#uiux">UI/UX Design</a></li>
+                    <li><a href="#data">Data Analysis</a></li>
+                    <li><a href="#cyber">Cyber Security</a></li>
+                    <li><a href="#app">App Development</a></li>
+                </ul>
+            </div> -->
+
+            <div class="footer-section contact-info">
+                <h3>Get in Touch</h3>
+                <p><i class="fas fa-map-marker-alt"></i> 3rd Gate Army Barrack, by Ebube Block Industry, Azhata, Abuja FCT</p>
+                <p><i class="fas fa-phone"></i> +23470 8184 3000</p>
+                <p><i class="fas fa-envelope"></i> talktothediplomats@gmail.com</p>
+            </div>
+        </div>
+
+        <div class="copyright">
+            <p>© 2025 theDiplomatsDigital. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Navbar that only shows at top of page
+            const navbar = document.getElementById('navbar');
+            
+            if (navbar) {
+                window.addEventListener('scroll', function() {
+                    const currentScroll = window.pageYOffset;
+                    
+                    if (currentScroll <= 10) {
+                        navbar.classList.remove('hide');
+                        navbar.classList.add('show');
+                    } else {
+                        navbar.classList.remove('show');
+                        navbar.classList.add('hide');
+                    }
+                });
+            }
+
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+
+            // Mobile menu toggle
+            const menuToggle = document.getElementById('menuToggle');
+            const navLinks = document.getElementById('navLinks');
+            const hamburgerIcon = document.getElementById('hamburgerIcon');
+            const closeIcon = document.getElementById('closeIcon');
+            const servicesLink = document.getElementById('servicesLink');
+            const servicesDropdown = document.getElementById('servicesDropdown');
+
+            if (menuToggle && navLinks && hamburgerIcon && closeIcon) {
+                menuToggle.addEventListener('click', () => {
+                    navLinks.classList.toggle('open');
+                    hamburgerIcon.classList.toggle('open');
+                    closeIcon.classList.toggle('open');
+                    document.body.style.overflow = navLinks.classList.contains('open') ? 'hidden' : '';
+                });
+
+                // Close menu when clicking regular links
+                document.querySelectorAll('.nav-links a:not(#servicesLink)').forEach(link => {
+                    link.addEventListener('click', () => {
+                        if (window.innerWidth <= 768) {
+                            navLinks.classList.remove('open');
+                            hamburgerIcon.classList.remove('open');
+                            closeIcon.classList.remove('open');
+                            document.body.style.overflow = '';
+                        }
+                    });
+                });
+
+                // Services dropdown functionality
+                if (servicesLink && servicesDropdown) {
+                    // Desktop hover behavior
+                    servicesLink.addEventListener('mouseenter', () => {
+                        if (window.innerWidth > 768) {
+                            servicesDropdown.style.display = 'block';
+                        }
+                    });
+                    
+                    // Mobile click behavior - toggle both dropdown and main menu
+                    servicesLink.addEventListener('click', (e) => {
+                        if (window.innerWidth <= 768) {
+                            e.preventDefault();
+                            const wasActive = servicesLink.parentElement.classList.contains('active');
+                            
+                            // Close all other dropdowns first
+                            document.querySelectorAll('.dropdown').forEach(dropdown => {
+                                dropdown.classList.remove('active');
+                            });
+                            
+                            // Toggle this dropdown
+                            servicesLink.parentElement.classList.toggle('active');
+                            
+                            // If this was closing the dropdown, also close the main menu
+                            if (wasActive) {
+                                navLinks.classList.remove('open');
+                                hamburgerIcon.classList.remove('open');
+                                closeIcon.classList.remove('open');
+                                document.body.style.overflow = '';
+                            }
+                        }
+                    });
+                }
+
+                // Close when clicking outside
+                document.addEventListener('click', (e) => {
+                    // Close mobile menu
+                    if (!e.target.closest('.navbar') && navLinks.classList.contains('open')) {
+                        navLinks.classList.remove('open');
+                        hamburgerIcon.classList.remove('open');
+                        closeIcon.classList.remove('open');
+                        document.body.style.overflow = '';
+                        
+                        // Also close any open dropdowns
+                        if (servicesLink) {
+                            servicesLink.parentElement.classList.remove('active');
+                        }
+                    }
+                    
+                    // Close desktop dropdown
+                    if (window.innerWidth > 768 && 
+                        !e.target.closest('.dropdown') && 
+                        servicesDropdown && 
+                        servicesDropdown.style.display === 'block') {
+                        servicesDropdown.style.display = 'none';
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>

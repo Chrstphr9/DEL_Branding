@@ -7,20 +7,322 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+    <styles>
+        <style>
+            :root {
+                --primary-color: #1a1a2e;
+                --secondary-color: #16213e;
+                --accent-color: #0f3460;
+                --highlight-color: #e94560;
+                --light-color: #f1f1f1;
+                --dark-color: #333;
+            }
+            
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            }
+            
+            body {
+                background-color: var(--light-color);
+                color: var(--dark-color);
+                line-height: 1.6;
+            }
+            
+            .navbar {
+                background-color: var(--primary-color);
+                color: white;
+                padding: 1rem 2rem;
+                position: fixed;
+                width: 100%;
+                top: 0;
+                z-index: 1000;
+                transition: all 0.3s ease;
+            }
+            
+            .navbar.hide {
+                transform: translateY(-100%);
+            }
+            
+            .navbar.show {
+                transform: translateY(0);
+            }
+            
+            .nav-container {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                max-width: 1200px;
+                margin: 0 auto;
+            }
+            
+            .logo {
+                font-size: 1.8rem;
+                font-weight: bold;
+                color: white;
+                text-decoration: none;
+            }
+            
+            .nav-links {
+                display: flex;
+                list-style: none;
+            }
+            
+            .nav-links a {
+                color: white;
+                text-decoration: none;
+                padding: 0.5rem 1rem;
+                margin: 0 0.5rem;
+                transition: color 0.3s;
+            }
+            
+            .nav-links a:hover, .nav-links a.active {
+                color: var(--highlight-color);
+            }
+            
+            .menu-toggle {
+                display: none;
+                flex-direction: column;
+                cursor: pointer;
+            }
+            
+            .hamburger-icon, .close-icon {
+                font-size: 1.5rem;
+                display: none;
+            }
+            
+            .close-icon {
+                display: none;
+            }
+            
+            .dropdown {
+                position: relative;
+            }
+            
+            .dropdown-content {
+                display: none;
+                position: absolute;
+                background-color: var(--secondary-color);
+                min-width: 200px;
+                box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+                z-index: 1;
+                border-radius: 0 0 5px 5px;
+            }
+            
+            .dropdown-content a {
+                color: white;
+                padding: 12px 16px;
+                text-decoration: none;
+                display: block;
+            }
+            
+            .dropdown-content a:hover {
+                background-color: var(--accent-color);
+            }
+            
+            .dropdown:hover .dropdown-content {
+                display: block;
+            }
+            
+            main {
+                padding-top: 80px;
+                min-height: 100vh;
+            }
+            
+            .container {
+                max-width: 1200px;
+                margin: 0 auto;
+                padding: 2rem;
+            }
+            
+            .hero {
+                background-color: var(--accent-color);
+                color: white;
+                padding: 4rem 2rem;
+                text-align: center;
+                margin-bottom: 2rem;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+                margin-bottom: 1rem;
+            }
+            
+            .hero p {
+                font-size: 1.2rem;
+                max-width: 800px;
+                margin: 0 auto;
+            }
+            
+            .about-section {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 2rem;
+                margin-bottom: 3rem;
+            }
+            
+            .about-text {
+                flex: 1;
+                min-width: 300px;
+            }
+            
+            .about-image {
+                flex: 1;
+                min-width: 300px;
+                background-color: #ddd;
+                height: 400px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: #777;
+                font-size: 1.2rem;
+            }
+            
+            .mission-vision {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 2rem;
+                margin-bottom: 3rem;
+            }
+            
+            .card {
+                flex: 1;
+                min-width: 300px;
+                background-color: white;
+                padding: 2rem;
+                border-radius: 5px;
+                box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            }
+            
+            .card h2 {
+                color: var(--accent-color);
+                margin-bottom: 1rem;
+                border-bottom: 2px solid var(--highlight-color);
+                padding-bottom: 0.5rem;
+            }
+            
+            .values-section {
+                background-color: var(--secondary-color);
+                color: white;
+                padding: 3rem 2rem;
+                border-radius: 5px;
+            }
+            
+            .values-list {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 1.5rem;
+                justify-content: center;
+                margin-top: 2rem;
+            }
+            
+            .value-item {
+                background-color: var(--primary-color);
+                padding: 1.5rem;
+                border-radius: 5px;
+                min-width: 200px;
+                text-align: center;
+                flex: 1;
+            }
+            
+            footer {
+                background-color: var(--primary-color);
+                color: white;
+                text-align: center;
+                padding: 2rem;
+                margin-top: 3rem;
+            }
+            
+            @media (max-width: 768px) {
+                .menu-toggle {
+                    display: flex;
+                }
+                
+                .hamburger-icon, .close-icon {
+                    display: block;
+                }
+                
+                .close-icon {
+                    display: none;
+                }
+                
+                .nav-links {
+                    position: fixed;
+                    top: 70px;
+                    left: 0;
+                    width: 100%;
+                    background-color: var(--secondary-color);
+                    flex-direction: column;
+                    align-items: center;
+                    padding: 1rem 0;
+                    transform: translateY(-150%);
+                    transition: transform 0.3s ease;
+                }
+                
+                .nav-links.open {
+                    transform: translateY(0);
+                }
+                
+                .hamburger-icon.open {
+                    display: none;
+                }
+                
+                .close-icon.open {
+                    display: block;
+                }
+                
+                .dropdown-content {
+                    position: static;
+                    display: none;
+                    width: 100%;
+                    box-shadow: none;
+                }
+                
+                .dropdown.active .dropdown-content {
+                    display: block;
+                }
+            }
+        </style>
+    </styles>
    
 </head>
 <body>
     <!-- Smart Navbar (scrolls up with page) -->
-    <header id="navbar">
-        <nav class="navbar">
-            <a href="#home" class="logo">The <span>Diplomats</span> Digital <span>World</span></a>
-        </nav>
-    </header>
+    <nav class="navbar show" id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">The Diplomats</a>
+            
+            <div class="menu-toggle" id="menuToggle">
+                <span class="hamburger-icon" id="hamburgerIcon">☰</span>
+                <span class="close-icon" id="closeIcon">×</span>
+            </div>
+            
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li class="dropdown">
+                    <a href="#" id="servicesLink">Services</a>
+                    <div class="dropdown-content" id="servicesDropdown">
+                        <a href="">Designing</a>
+                        <a href="">Branding</a>
+                        <a href="">Printing</a>
+                        <a href="">Publishing</a>
+                    </div>
+                </li>
+                <li><a href="Affiliate.html">Affiliate</a></li>
+                <li><a href="career.html">Career</a></li>
+                <li><a href="job.html">Register a Job</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+            </ul>
+        </div>
+    </nav>
 
     <!-- Hero Section -->
     <section class="hero" id="home">
-        <h1>Company Branding</h1>
-        <!-- <p>Building the future with innovative solutions that enhance businesses globally.</p> -->
+        <h1>Welcome to the diplomats branding & publishing </h1>
+        <p>...exceeding expectations!</p>
         <a href="#branding" class="cta-button">View Packages</a>
     </section>
 
@@ -147,7 +449,7 @@
     </section>
 
     <!-- Courses Section -->
-    <section class="courses" id="courses">
+    <!-- <section class="courses" id="courses">
         <h2 class="section-title">Coding Courses</h2>
         <div class="courses-grid">
             <div class="course-item">
@@ -166,7 +468,7 @@
                 <h4>App Development</h4>
             </div>
         </div>
-    </section>
+    </section> -->
 
     <!-- Footer -->
     <footer id="contact">
@@ -192,7 +494,7 @@
                 </ul>
             </div>
 
-            <div class="footer-section">
+            <!-- <div class="footer-section">
                 <h3>Coding Courses</h3>
                 <ul>
                     <li><a href="#javascript">JavaScript</a></li>
@@ -201,7 +503,7 @@
                     <li><a href="#cyber">Cyber Security</a></li>
                     <li><a href="#app">App Development</a></li>
                 </ul>
-            </div>
+            </div> -->
 
             <div class="footer-section contact-info">
                 <h3>Get in Touch</h3>
@@ -216,60 +518,6 @@
         </div>
     </footer>
 
-    <script>
-        // Navbar that only shows at top of page
-        const navbar = document.getElementById('navbar');
-        
-        window.addEventListener('scroll', function() {
-            const currentScroll = window.pageYOffset;
-            
-            if (currentScroll <= 10) { // When at or near top (10px buffer)
-                navbar.classList.remove('hide');
-                navbar.classList.add('show');
-            } else {
-                navbar.classList.remove('show');
-                navbar.classList.add('hide');
-            }
-        });
-
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                
-                const targetId = this.getAttribute('href');
-                const targetElement = document.querySelector(targetId);
-                
-                if (targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 80,
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
-
-        // Active link highlighting
-        window.addEventListener('scroll', function() {
-            const sections = document.querySelectorAll('section');
-            const navLinks = document.querySelectorAll('.nav-links a');
-            
-            let current = '';
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                const sectionHeight = section.clientHeight;
-                if (pageYOffset >= sectionTop - 100) {
-                    current = section.getAttribute('id');
-                }
-            });
-            
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href') === `#${current}`) {
-                    link.classList.add('active');
-                }
-            });
-        });
-    </script>
+<script src="index.js"></script>
 </body>
 </html>
