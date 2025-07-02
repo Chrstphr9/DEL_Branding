@@ -263,6 +263,153 @@
             margin-top: 3rem;
         }
         
+        .footer-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 3rem;
+    margin-bottom: 3rem;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.footer-section h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    color: #f84;
+    position: relative;
+    display: inline-block;
+}
+
+.footer-section h3::after {
+    content: '';
+    position: absolute;
+    width: 50%;
+    height: 2px;
+    background: #f84;
+    bottom: -5px;
+    left: 0;
+}
+
+.footer-section p {
+    margin-bottom: 1.5rem;
+    opacity: 0.9;
+}
+
+.footer-section ul {
+    list-style: none;
+}
+
+.footer-section ul li {
+    margin-bottom: 0.8rem;
+}
+
+.footer-section ul li a {
+    color: #ddd;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+.footer-section ul li a:hover {
+    color: #f84;
+    transform: translateX(5px);
+}
+
+.contact-info p {
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.8rem;
+    opacity: 0.9;
+}
+
+.contact-info i {
+    margin-top: 0.2rem;
+    color: #f84;
+}
+
+.social-links {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.social-links a {
+    color: white;
+    background: rgba(255, 255, 255, 0.1);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.social-links a:hover {
+    background: #f84;
+    transform: translateY(-3px);
+}
+
+.copyright {
+    text-align: center;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    opacity: 0.7;
+    font-size: 0.9rem;
+}
+        
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: flex;
+            }
+            
+            .hamburger-icon, .close-icon {
+                display: block;
+            }
+            
+            .close-icon {
+                display: none;
+            }
+            
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background-color: var(--secondary-color);
+                flex-direction: column;
+                align-items: center;
+                padding: 1rem 0;
+                transform: translateY(-150%);
+                transition: transform 0.3s ease;
+            }
+            
+            .nav-links.open {
+                transform: translateY(0);
+            }
+            
+            .hamburger-icon.open {
+                display: none;
+            }
+            
+            .close-icon.open {
+                display: block;
+            }
+            
+            .dropdown-content {
+                position: static;
+                display: none;
+                width: 100%;
+                box-shadow: none;
+            }
+            
+            .dropdown.active .dropdown-content {
+                display: block;
+            }
+        }
+
         @media (max-width: 768px) {
             .menu-toggle {
                 display: flex;
@@ -331,7 +478,7 @@
                     <a href="#" id="servicesLink">Services</a>
                     <div class="dropdown-content" id="servicesDropdown">
                         <a href="">Designing</a>
-                        <a href="">Branding</a>
+                        <a href="branding.html">Branding</a>
                         <a href="">Printing</a>
                         <a href="">Publishing</a>
                     </div>
@@ -363,7 +510,7 @@
                             </div>
                             <div class="contact-text">
                                 <h3>Our Office</h3>
-                                <p>123 Business Avenue<br>City, State 10001<br>Country</p>
+                                <p>3rd Gate Army Barrack, by Ebube Block Industry, Azhata, Abuja FCT</p>
                             </div>
                         </div>
                         
@@ -373,7 +520,7 @@
                             </div>
                             <div class="contact-text">
                                 <h3>Phone</h3>
-                                <p>+1 (123) 456-7890<br>+1 (987) 654-3210</p>
+                                <p>+23470 8184 3000</p>
                             </div>
                         </div>
                         
@@ -393,7 +540,7 @@
                             </div>
                             <div class="contact-text">
                                 <h3>Working Hours</h3>
-                                <p>Monday - Friday: 9am - 6pm<br>Saturday: 10am - 4pm<br>Sunday: Closed</p>
+                                <p>Monday - Saturday: 07:30am - 6pm</p>
                             </div>
                         </div>
                     </div>
@@ -432,9 +579,9 @@
                 </div>
             </div>
             
-            <div class="map-container">
+            <!-- <div class="map-container">
                 [GOOGLE MAP EMBED HERE]
-            </div>
+            </div> -->
         </div>
     </main>
     
