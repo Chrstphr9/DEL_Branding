@@ -53,6 +53,12 @@ html {
     opacity: 0;
 }
 
+
+.cac {
+    width: 300px; /* Fixed width */
+    height: auto; /* Maintain aspect ratio */
+}
+
 .cta-button {
     display: inline-block;
     background: white;
